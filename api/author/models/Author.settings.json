@@ -1,0 +1,51 @@
+{
+  "connection": "default",
+  "collectionName": "author",
+  "info": {
+    "name": "author",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "pseudo": {
+      "default": "",
+      "type": "string"
+    },
+    "photo": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "titlePresentation": {
+      "default": "",
+      "type": "text"
+    },
+    "presentation": {
+      "default": "",
+      "type": "text"
+    },
+    "nom": {
+      "default": "",
+      "type": "string"
+    },
+    "prenom": {
+      "default": "",
+      "type": "string"
+    },
+    "infos": {
+      "collection": "infos",
+      "via": "author"
+    },
+    "posts": {
+      "collection": "posts",
+      "via": "author"
+    },
+    "affectation": {
+      "default": "",
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "connection": "default",
+  "collectionName": "posts",
+  "info": {
+    "name": "posts",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "default": "",
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "description": {
+      "default": "",
+      "type": "text"
+    },
+    "subtitle": {
+      "default": "",
+      "type": "string"
+    },
+    "subimage": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "metadescription": {
+      "default": "",
+      "type": "string"
+    },
+    "metatitle": {
+      "default": "",
+      "type": "string"
+    },
+    "postbody": {
+      "default": "",
+      "type": "text"
+    },
+    "author": {
+      "model": "author",
+      "via": "posts"
+    }
+  }
+}

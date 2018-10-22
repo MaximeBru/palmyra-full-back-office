@@ -1,0 +1,57 @@
+{
+  "connection": "default",
+  "collectionName": "infos",
+  "info": {
+    "name": "infos",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "title": {
+      "default": "",
+      "type": "string"
+    },
+    "date": {
+      "default": "",
+      "type": "date"
+    },
+    "description": {
+      "default": "",
+      "type": "text"
+    },
+    "metaDescription": {
+      "default": "",
+      "maxLength": 200,
+      "type": "string"
+    },
+    "metaTitle": {
+      "default": "",
+      "maxLength": 90,
+      "type": "string"
+    },
+    "newsBody": {
+      "default": "",
+      "type": "text"
+    },
+    "subTitle": {
+      "default": "",
+      "type": "string"
+    },
+    "subBody": {
+      "default": "",
+      "type": "text"
+    },
+    "author": {
+      "model": "author",
+      "via": "infos"
+    }
+  }
+}
