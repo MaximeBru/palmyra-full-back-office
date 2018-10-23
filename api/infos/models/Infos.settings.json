@@ -52,6 +52,10 @@
     "author": {
       "model": "author",
       "via": "infos"
+    },
+    "logo": {
+      "model": "logo",
+      "via": "infos"
     }
   }
 }

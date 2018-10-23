@@ -1,0 +1,25 @@
+{
+  "connection": "default",
+  "collectionName": "logo",
+  "info": {
+    "name": "logo",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "titre": {
+      "default": "",
+      "type": "string"
+    },
+    "code": {
+      "default": "",
+      "type": "string"
+    },
+    "infos": {
+      "collection": "infos",
+      "via": "logo"
+    }
+  }
+}

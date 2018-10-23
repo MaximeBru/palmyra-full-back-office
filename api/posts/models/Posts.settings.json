@@ -47,7 +47,8 @@
     },
     "author": {
       "model": "author",
-      "via": "posts"
+      "via": "posts",
+      "columnName": ""
     }
   }
 }

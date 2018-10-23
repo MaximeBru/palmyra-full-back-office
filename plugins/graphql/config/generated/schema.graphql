@@ -114,6 +114,14 @@ type createInfosPayload {
   info: Infos
 }
 
+input createLogoInput {
+  data: LogoInput
+}
+
+type createLogoPayload {
+  logo: Logo
+}
+
 input createPostsInput {
   data: PostsInput
 }
@@ -157,6 +165,14 @@ input deleteInfosInput {
 
 type deleteInfosPayload {
   info: Infos
+}
+
+input deleteLogoInput {
+  where: InputID
+}
+
+type deleteLogoPayload {
+  logo: Logo
 }
 
 input deletePostsInput {
@@ -209,6 +225,7 @@ type Infos {
   subTitle: String
   subBody: String
   author: Author
+  logo: Logo
 }
 
 type InfosAggregator {
@@ -247,6 +264,11 @@ type InfosConnectionDescription {
 }
 
 type InfosConnectionImage {
+  key: ID
+  connection: InfosConnection
+}
+
+type InfosConnectionLogo {
   key: ID
   connection: InfosConnection
 }
@@ -300,6 +322,7 @@ type InfosGroupBy {
   subTitle: [InfosConnectionSubTitle]
   subBody: [InfosConnectionSubBody]
   author: [InfosConnectionAuthor]
+  logo: [InfosConnectionLogo]
 }
 
 input InfosInput {
@@ -313,6 +336,7 @@ input InfosInput {
   subTitle: String
   subBody: String
   author: ID
+  logo: ID
 }
 
 input InputID {
@@ -324,7 +348,65 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 """
 scalar JSON
 
-union Morph = Author | createAuthorPayload | updateAuthorPayload | deleteAuthorPayload | AuthorConnection | AuthorAggregator | AuthorGroupBy | AuthorConnection_id | AuthorConnectionCreatedAt | AuthorConnectionUpdatedAt | AuthorConnectionPseudo | AuthorConnectionPhoto | AuthorConnectionTitlePresentation | AuthorConnectionPresentation | AuthorConnectionNom | AuthorConnectionPrenom | AuthorConnectionAffectation | Infos | createInfosPayload | updateInfosPayload | deleteInfosPayload | InfosConnection | InfosAggregator | InfosGroupBy | InfosConnection_id | InfosConnectionCreatedAt | InfosConnectionUpdatedAt | InfosConnectionImage | InfosConnectionTitle | InfosConnectionDate | InfosConnectionDescription | InfosConnectionMetaDescription | InfosConnectionMetaTitle | InfosConnectionNewsBody | InfosConnectionSubTitle | InfosConnectionSubBody | InfosConnectionAuthor | Posts | createPostsPayload | updatePostsPayload | deletePostsPayload | PostsConnection | PostsAggregator | PostsGroupBy | PostsConnection_id | PostsConnectionCreatedAt | PostsConnectionUpdatedAt | PostsConnectionTitle | PostsConnectionImage | PostsConnectionDescription | PostsConnectionSubtitle | PostsConnectionSubimage | PostsConnectionMetadescription | PostsConnectionMetatitle | PostsConnectionPostbody | PostsConnectionAuthor | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
+type Logo {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  titre: String
+  code: String
+  infos(sort: String, limit: Int, start: Int, where: JSON): [Infos]
+}
+
+type LogoAggregator {
+  count: Int
+}
+
+type LogoConnection {
+  values: [Logo]
+  groupBy: LogoGroupBy
+  aggregate: LogoAggregator
+}
+
+type LogoConnection_id {
+  key: ID
+  connection: LogoConnection
+}
+
+type LogoConnectionCode {
+  key: String
+  connection: LogoConnection
+}
+
+type LogoConnectionCreatedAt {
+  key: DateTime
+  connection: LogoConnection
+}
+
+type LogoConnectionTitre {
+  key: String
+  connection: LogoConnection
+}
+
+type LogoConnectionUpdatedAt {
+  key: DateTime
+  connection: LogoConnection
+}
+
+type LogoGroupBy {
+  _id: [LogoConnection_id]
+  createdAt: [LogoConnectionCreatedAt]
+  updatedAt: [LogoConnectionUpdatedAt]
+  titre: [LogoConnectionTitre]
+  code: [LogoConnectionCode]
+}
+
+input LogoInput {
+  titre: String
+  code: String
+  infos: [ID]
+}
+
+union Morph = Author | createAuthorPayload | updateAuthorPayload | deleteAuthorPayload | AuthorConnection | AuthorAggregator | AuthorGroupBy | AuthorConnection_id | AuthorConnectionCreatedAt | AuthorConnectionUpdatedAt | AuthorConnectionPseudo | AuthorConnectionPhoto | AuthorConnectionTitlePresentation | AuthorConnectionPresentation | AuthorConnectionNom | AuthorConnectionPrenom | AuthorConnectionAffectation | Infos | createInfosPayload | updateInfosPayload | deleteInfosPayload | InfosConnection | InfosAggregator | InfosGroupBy | InfosConnection_id | InfosConnectionCreatedAt | InfosConnectionUpdatedAt | InfosConnectionImage | InfosConnectionTitle | InfosConnectionDate | InfosConnectionDescription | InfosConnectionMetaDescription | InfosConnectionMetaTitle | InfosConnectionNewsBody | InfosConnectionSubTitle | InfosConnectionSubBody | InfosConnectionAuthor | InfosConnectionLogo | Logo | createLogoPayload | updateLogoPayload | deleteLogoPayload | LogoConnection | LogoAggregator | LogoGroupBy | LogoConnection_id | LogoConnectionCreatedAt | LogoConnectionUpdatedAt | LogoConnectionTitre | LogoConnectionCode | Posts | createPostsPayload | updatePostsPayload | deletePostsPayload | PostsConnection | PostsAggregator | PostsGroupBy | PostsConnection_id | PostsConnectionCreatedAt | PostsConnectionUpdatedAt | PostsConnectionTitle | PostsConnectionImage | PostsConnectionDescription | PostsConnectionSubtitle | PostsConnectionSubimage | PostsConnectionMetadescription | PostsConnectionMetatitle | PostsConnectionPostbody | PostsConnectionAuthor | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
 
 type Mutation {
   createAuthor(input: createAuthorInput): createAuthorPayload
@@ -333,6 +415,9 @@ type Mutation {
   createInfos(input: createInfosInput): createInfosPayload
   updateInfos(input: updateInfosInput): updateInfosPayload
   deleteInfos(input: deleteInfosInput): deleteInfosPayload
+  createLogo(input: createLogoInput): createLogoPayload
+  updateLogo(input: updateLogoInput): updateLogoPayload
+  deleteLogo(input: deleteLogoInput): deleteLogoPayload
   createPosts(input: createPostsInput): createPostsPayload
   updatePosts(input: updatePostsInput): updatePostsPayload
   deletePosts(input: deletePostsInput): deletePostsPayload
@@ -470,6 +555,9 @@ type Query {
   info(id: ID!): Infos
   infos(sort: String, limit: Int, start: Int, where: JSON): [Infos]
   infosConnection(sort: String, limit: Int, start: Int, where: JSON): InfosConnection
+  logo(id: ID!): Logo
+  logos(sort: String, limit: Int, start: Int, where: JSON): [Logo]
+  logosConnection(sort: String, limit: Int, start: Int, where: JSON): LogoConnection
   post(id: ID!): Posts
   posts(sort: String, limit: Int, start: Int, where: JSON): [Posts]
   postsConnection(sort: String, limit: Int, start: Int, where: JSON): PostsConnection
@@ -511,6 +599,15 @@ input updateInfosInput {
 
 type updateInfosPayload {
   info: Infos
+}
+
+input updateLogoInput {
+  where: InputID
+  data: LogoInput
+}
+
+type updateLogoPayload {
+  logo: Logo
 }
 
 input updatePostsInput {
