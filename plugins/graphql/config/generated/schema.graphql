@@ -106,6 +106,14 @@ type createAuthorPayload {
   author: Author
 }
 
+input createEmailInput {
+  data: EmailInput
+}
+
+type createEmailPayload {
+  email: Email
+}
+
 input createInfosInput {
   data: InfosInput
 }
@@ -159,6 +167,14 @@ type deleteAuthorPayload {
   author: Author
 }
 
+input deleteEmailInput {
+  where: InputID
+}
+
+type deleteEmailPayload {
+  email: Email
+}
+
 input deleteInfosInput {
   where: InputID
 }
@@ -197,6 +213,78 @@ input deleteUserInput {
 
 type deleteUserPayload {
   user: UsersPermissionsUser
+}
+
+type Email {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  firstname: String
+  society: String
+  email: String
+}
+
+type EmailAggregator {
+  count: Int
+}
+
+type EmailConnection {
+  values: [Email]
+  groupBy: EmailGroupBy
+  aggregate: EmailAggregator
+}
+
+type EmailConnection_id {
+  key: ID
+  connection: EmailConnection
+}
+
+type EmailConnectionCreatedAt {
+  key: DateTime
+  connection: EmailConnection
+}
+
+type EmailConnectionEmail {
+  key: String
+  connection: EmailConnection
+}
+
+type EmailConnectionFirstname {
+  key: String
+  connection: EmailConnection
+}
+
+type EmailConnectionName {
+  key: String
+  connection: EmailConnection
+}
+
+type EmailConnectionSociety {
+  key: String
+  connection: EmailConnection
+}
+
+type EmailConnectionUpdatedAt {
+  key: DateTime
+  connection: EmailConnection
+}
+
+type EmailGroupBy {
+  _id: [EmailConnection_id]
+  createdAt: [EmailConnectionCreatedAt]
+  updatedAt: [EmailConnectionUpdatedAt]
+  name: [EmailConnectionName]
+  firstname: [EmailConnectionFirstname]
+  society: [EmailConnectionSociety]
+  email: [EmailConnectionEmail]
+}
+
+input EmailInput {
+  name: String
+  firstname: String
+  society: String
+  email: String
 }
 
 input FileInput {
@@ -406,12 +494,15 @@ input LogoInput {
   infos: [ID]
 }
 
-union Morph = Author | createAuthorPayload | updateAuthorPayload | deleteAuthorPayload | AuthorConnection | AuthorAggregator | AuthorGroupBy | AuthorConnection_id | AuthorConnectionCreatedAt | AuthorConnectionUpdatedAt | AuthorConnectionPseudo | AuthorConnectionPhoto | AuthorConnectionTitlePresentation | AuthorConnectionPresentation | AuthorConnectionNom | AuthorConnectionPrenom | AuthorConnectionAffectation | Infos | createInfosPayload | updateInfosPayload | deleteInfosPayload | InfosConnection | InfosAggregator | InfosGroupBy | InfosConnection_id | InfosConnectionCreatedAt | InfosConnectionUpdatedAt | InfosConnectionImage | InfosConnectionTitle | InfosConnectionDate | InfosConnectionDescription | InfosConnectionMetaDescription | InfosConnectionMetaTitle | InfosConnectionNewsBody | InfosConnectionSubTitle | InfosConnectionSubBody | InfosConnectionAuthor | InfosConnectionLogo | Logo | createLogoPayload | updateLogoPayload | deleteLogoPayload | LogoConnection | LogoAggregator | LogoGroupBy | LogoConnection_id | LogoConnectionCreatedAt | LogoConnectionUpdatedAt | LogoConnectionTitre | LogoConnectionCode | Posts | createPostsPayload | updatePostsPayload | deletePostsPayload | PostsConnection | PostsAggregator | PostsGroupBy | PostsConnection_id | PostsConnectionCreatedAt | PostsConnectionUpdatedAt | PostsConnectionTitle | PostsConnectionImage | PostsConnectionDescription | PostsConnectionSubtitle | PostsConnectionSubimage | PostsConnectionMetadescription | PostsConnectionMetatitle | PostsConnectionPostbody | PostsConnectionAuthor | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
+union Morph = Author | createAuthorPayload | updateAuthorPayload | deleteAuthorPayload | AuthorConnection | AuthorAggregator | AuthorGroupBy | AuthorConnection_id | AuthorConnectionCreatedAt | AuthorConnectionUpdatedAt | AuthorConnectionPseudo | AuthorConnectionPhoto | AuthorConnectionTitlePresentation | AuthorConnectionPresentation | AuthorConnectionNom | AuthorConnectionPrenom | AuthorConnectionAffectation | Email | createEmailPayload | updateEmailPayload | deleteEmailPayload | EmailConnection | EmailAggregator | EmailGroupBy | EmailConnection_id | EmailConnectionCreatedAt | EmailConnectionUpdatedAt | EmailConnectionName | EmailConnectionFirstname | EmailConnectionSociety | EmailConnectionEmail | Infos | createInfosPayload | updateInfosPayload | deleteInfosPayload | InfosConnection | InfosAggregator | InfosGroupBy | InfosConnection_id | InfosConnectionCreatedAt | InfosConnectionUpdatedAt | InfosConnectionImage | InfosConnectionTitle | InfosConnectionDate | InfosConnectionDescription | InfosConnectionMetaDescription | InfosConnectionMetaTitle | InfosConnectionNewsBody | InfosConnectionSubTitle | InfosConnectionSubBody | InfosConnectionAuthor | InfosConnectionLogo | Logo | createLogoPayload | updateLogoPayload | deleteLogoPayload | LogoConnection | LogoAggregator | LogoGroupBy | LogoConnection_id | LogoConnectionCreatedAt | LogoConnectionUpdatedAt | LogoConnectionTitre | LogoConnectionCode | Posts | createPostsPayload | updatePostsPayload | deletePostsPayload | PostsConnection | PostsAggregator | PostsGroupBy | PostsConnection_id | PostsConnectionCreatedAt | PostsConnectionUpdatedAt | PostsConnectionTitle | PostsConnectionImage | PostsConnectionDescription | PostsConnectionSubtitle | PostsConnectionSubimage | PostsConnectionMetadescription | PostsConnectionMetatitle | PostsConnectionPostbody | PostsConnectionAuthor | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
 
 type Mutation {
   createAuthor(input: createAuthorInput): createAuthorPayload
   updateAuthor(input: updateAuthorInput): updateAuthorPayload
   deleteAuthor(input: deleteAuthorInput): deleteAuthorPayload
+  createEmail(input: createEmailInput): createEmailPayload
+  updateEmail(input: updateEmailInput): updateEmailPayload
+  deleteEmail(input: deleteEmailInput): deleteEmailPayload
   createInfos(input: createInfosInput): createInfosPayload
   updateInfos(input: updateInfosInput): updateInfosPayload
   deleteInfos(input: deleteInfosInput): deleteInfosPayload
@@ -552,6 +643,9 @@ type Query {
   author(id: ID!): Author
   authors(sort: String, limit: Int, start: Int, where: JSON): [Author]
   authorsConnection(sort: String, limit: Int, start: Int, where: JSON): AuthorConnection
+  email(id: ID!): Email
+  emails(sort: String, limit: Int, start: Int, where: JSON): [Email]
+  emailsConnection(sort: String, limit: Int, start: Int, where: JSON): EmailConnection
   info(id: ID!): Infos
   infos(sort: String, limit: Int, start: Int, where: JSON): [Infos]
   infosConnection(sort: String, limit: Int, start: Int, where: JSON): InfosConnection
@@ -590,6 +684,15 @@ input updateAuthorInput {
 
 type updateAuthorPayload {
   author: Author
+}
+
+input updateEmailInput {
+  where: InputID
+  data: EmailInput
+}
+
+type updateEmailPayload {
+  email: Email
 }
 
 input updateInfosInput {

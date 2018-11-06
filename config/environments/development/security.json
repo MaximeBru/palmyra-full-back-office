@@ -20,7 +20,7 @@
     "includeSubDomains": true
   },
   "xframe": {
-    "enabled": false,
+    "enabled": true,
     "value": "SAMEORIGIN"
   },
   "xss": {
