@@ -5,12 +5,12 @@
       "connector": "strapi-hook-mongoose",
       "settings": {
         "client": "mongo",
-        "host": "ds155073.mlab.com",
+        "host": "127.0.0.1",
         "srv": false,
-        "port": 55073,
+        "port": 27017,
         "database": "back",
-        "username": "maxime",
-        "password": "Etoile1986%"
+        "username": "",
+        "password": ""
       },
       "options": {
         "authenticationDatabase": "",
